@@ -1,48 +1,337 @@
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
-*/
+   */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+   html, body, div, span, applet, object, iframe,
+   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+   a, abbr, acronym, address, big, cite, code,
+   del, dfn, em, img, ins, kbd, q, s, samp,
+   small, strike, strong, sub, sup, tt, var,
+   b, u, i, center,
+   dl, dt, dd, ol, ul, li,
+   fieldset, form, label, legend,
+   table, caption, tbody, tfoot, thead, tr, th, td,
+   article, aside, canvas, details, embed, 
+   figure, figcaption, footer, header, hgroup, 
+   menu, nav, output, ruby, section, summary,
+   time, mark, audio, video {
+   	margin: 0;
+   	padding: 0;
+   	border: 0;
+   	font-size: 100%;
+   	font: inherit;
+   	vertical-align: baseline;
+   }
+   /* HTML5 display-role reset for older browsers */
+   article, aside, details, figcaption, figure, 
+   footer, header, hgroup, menu, nav, section {
+   	display: block;
+   }
+   body {
+   	line-height: 1;
+   }
+   ol, ul {
+   	list-style: none;
+   }
+   blockquote, q {
+   	quotes: none;
+   }
+   blockquote:before, blockquote:after,
+   q:before, q:after {
+   	content: '';
+   	content: none;
+   }
+   table {
+   	border-collapse: collapse;
+   	border-spacing: 0;
+   }
+
+/*	less setting
+	所有less變數設定都在這理
+	*/
+	@gap: 50px;
+	@green:#0d827e;
+	@gray:#666;
+
+/* 	globle css setting
+	所有主要css設定都在這理
+	*/
+
+	body{
+		font-size: 16px;
+		overflow-y:scroll;
+		margin-bottom: @gap;
+	}
+	h1{
+		font-size: 26px;
+		font-weight: bold;
+		margin: @gap/2 0;
+	}
+	p{
+		margin-bottom: @gap/5;
+		line-height: 25px;
+	}
+
+	.center{
+		text-align: center;
+	}
+
+// image background
+.background{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	&.out{
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	&.active{
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
+	&.order{
+		background-image: url(../img/background/bg2.jpg);
+	}
+	&.brand{
+		background-image: url(../img/background/bg.jpg);
+	}
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+
+
+// clearfix
+.cf{
+	zoom: 1;
+	&:before, &:after{
+		content: "";
+		display: table;
+	}
+	&:after{
+		clear: both;
+	}
 }
-body {
-	line-height: 1;
+
+.container{
+	width: 96%;
+	margin: 0 auto;
 }
-ol, ul {
-	list-style: none;
+
+/* 	nav setting
+	所有nav css設定都在這理
+	*/
+	nav{
+		border-bottom: 1px solid @gray;
+		padding: 20px 0;
+		height: @gap*2;
+  // line-height: @gap*2;
+  #logo{
+  	float: left;
+  }
+  ul{
+  	li{
+  		float: right;
+  		font-size: 16px;
+  		margin-top: 25px;
+  		padding: 15px;
+  		-webkit-transition: all 0.5s;
+  		transition: all 0.5s;
+  		&:hover{
+  			background-color: @green;
+			a{
+				color: white;
+			}
+  		}
+  		&.active{
+  			background-color: @green;
+  			a{
+  				color: white;
+  			}
+  		}
+  		a{
+  			text-decoration: none;
+  			color: black;
+  			&:hover{
+  				text-decoration: none;
+  				// color: black;
+  			}
+  		}
+  	}
+  }
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
+
+/* 	article setting
+	所有文章內容css設定都在這理
+	*/
+	article{
+		// custom design setting
+		-webkit-transition: all 0.5s;
+		transition: all 0.5s;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		margin-top: @gap;
+		&.active{
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+		&.out{
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		&.brand{
+			width: 740px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.linkorder{
+			margin-top: @gap;
+			a{
+				font-size: 20px;
+				font-weight: bold;
+				color: white;
+				text-decoration: none;
+				background-color: @green;
+				padding: 15px;
+				&:hover{
+					color: white;
+					text-decoration: none;
+				}
+			}
+		}
+		&.cus-design{
+			// background-color: rgba(255,255,255,0.7);
+			.column{
+				position: relative;
+				button{
+					margin-top: @gap/5;
+					padding: @gap/5;
+					cursor: pointer;
+					background-color: transparent;
+					border: 1px solid @gray;
+					line-height: 21px;
+					img{
+						margin-bottom: -5px;
+						margin-left: 5px;
+						&.return{
+							margin-left: 0;
+							margin-right: 5px;
+						}
+					}
+				}
+				#form{
+					display: none;
+					margin: @gap/10 @gap/10 @gap/2 @gap/10;
+					label{
+						font-size: 20px;
+						font-weight: bold;
+						display: block;
+						margin-bottom: @gap/10;
+					}
+					input{
+						width: 100%;
+						font-size: 20px;
+						display: block;
+						margin-bottom: @gap/5;
+						border: none;
+						border-bottom: 1px solid @gray;
+						background-color: transparent;
+					}
+					
+				}
+				#selector{
+					
+				}
+				img{
+					&.full{
+						position: absolute;
+						left: 0;
+						top: 0;
+						z-index: 1;
+						width: 100%;
+					}
+					&.static{
+						position: static;
+					}
+				}
+				#info{
+					position: absolute;
+					left: @gap/3;
+					top: @gap/3;
+					z-index: 2;
+					font-size: 15px;
+					font-weight: bold;
+					line-height: 25px;
+				}
+				.items{
+					margin: @gap/10 @gap/10 @gap/2 @gap/10;
+					h3{
+						font-size: 20px;
+						font-weight: bold;
+						margin-bottom: @gap/10;
+					}
+					ul{
+						border-top: 1px dashed @gray;
+						margin-top: @gap/5;
+						padding-top: @gap/5;
+						li{
+							display: inline-block;
+							margin-bottom: @gap/5;
+							text-align: center;
+							cursor: pointer;
+							img{
+								margin-bottom: @gap/5;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+/*	media query setting
+	螢幕大小相關設定都在這理
+	*/
+	@media only screen and (min-width:768px){
+		.container{
+			width: 740px;
+			article{
+				&.brand{
+					width: 90%;
+					margin-left: auto;
+					margin-right: auto;
+				}
+				&.cus-design{
+					.column{
+						float: left;
+						width: 48%;
+						padding: 1%;
+					}
+				}
+			}		
+		}
+	}
+
+	@media only screen and (min-width:1200px){
+		.container{
+			width: 1150px;
+			article{
+				&.brand{
+					width: 740px;
+				}
+			}
+		}
+	}
